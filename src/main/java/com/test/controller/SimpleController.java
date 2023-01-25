@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.test.dto.YoilDto;
@@ -161,9 +162,7 @@ public class SimpleController {
 		
 				
 		//뷰이동
-		model.addAttribute("year",dto.getYear());
-		model.addAttribute("month",dto.getMonth());
-		model.addAttribute("day",dto.getDay());
+		model.addAttribute("yoildto",dto);
 		model.addAttribute("yoil",yoil);		
 		return "yoil/Yoil6";
 	}
@@ -179,6 +178,11 @@ public class SimpleController {
 	private boolean isValid(YoilDto param) {
 		return true;
 	}
+	
+	
+	
+
+	
 	
 	
 }
