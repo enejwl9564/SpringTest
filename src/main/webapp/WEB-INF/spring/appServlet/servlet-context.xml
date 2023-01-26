@@ -25,8 +25,19 @@
 	<context:component-scan base-package="com.test.controller" />
 	<context:component-scan base-package="com.test.filter" />
 	<context:component-scan base-package="com.test.exception" />
+	<context:component-scan base-package="com.test.validation" />
+	<context:component-scan base-package="com.test.dao" />
+	<context:component-scan base-package="com.test.service" />
 	
 	
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>error_message</beans:value>		
+			</beans:list>
+		</beans:property>
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
 	
 	
 </beans:beans>

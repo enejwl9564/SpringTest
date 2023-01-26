@@ -1,36 +1,58 @@
 package com.test.controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.test.dto.AuthDto;
+import com.test.dto.LoginDto;
+import com.test.service.AuthService;
+import com.test.validation.LoginValidator;
 
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
 public class LoginController {
+
+	@Autowired
+	AuthService service;
+	
+	@InitBinder
+	public void IDPWInit(WebDataBinder binder) {
+		//유효성 체크
+		binder.addValidators(new LoginValidator());
+		List<Validator> vlist = binder.getValidators();
+		log.info("validatorList : " + vlist);
+	}	
+	
 	
 	@GetMapping("/login")
 	void loginform() {
 		log.info("login Get...");
 		
-		throw new NullPointerException("login get 에서 발생!!");
+//		throw new NullPointerException("login get 에서 발생!!");
 		
 	}
 	
 	@PostMapping("/login")
 	String loginproc(
-			String email,
-			String pwd,
-			boolean rememberId,
+			@Valid @ModelAttribute LoginDto loginDto,
+			BindingResult result,
 			Model model, 
 			HttpServletRequest request,
 			HttpServletResponse response) {
@@ -40,30 +62,28 @@ public class LoginController {
 		//1 파라미터(생략)
 		
 		//2 유효성
-		boolean flag = isValid(email,pwd);
-		if(!flag) {
-			model.addAttribute("msg","ID/PW가 일치하지 않습니다.");
-			return "redirect:/login";
+		if(result.hasErrors()) {
+			return "/login";
 		}
 		
 		//3 서비스
 		//1) DB id/pw 와 파라미터 id/pw 일치여부 확인
 		//2) 일치하다면 - 세션객체생성 최소한의 정보를 저장
 		//3) 기타(쿠키)
-		HttpSession session = request.getSession();
-		AuthDto adto = new AuthDto();
-		adto.setEmail(email);
-		adto.setGrade("1");
-		session.setAttribute("authdto", adto);
-		
-		if(rememberId) {
-			Cookie cookie = new Cookie("email",email);
-			response.addCookie(cookie);
-		}else {
-			Cookie cookie = new Cookie("email",email);
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
+		boolean flag = service.LoginCheck(loginDto, request);
+		if(flag)
+		{
+			if(loginDto.isRememberId()) {
+				Cookie cookie = new Cookie("email",loginDto.getEmail());
+				response.addCookie(cookie);
+			}else {
+				Cookie cookie = new Cookie("email",loginDto.getEmail());
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
 		}
+		
+		
 		//4 뷰
 		return "redirect:/";
 		

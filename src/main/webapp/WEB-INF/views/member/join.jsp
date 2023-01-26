@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +26,13 @@
 </head>
 <body>
 <section class="container">
-	<div class="msg">${param.msg}</div>
+	<%-- <div class="msg">${param.msg}</div> --%>
 	<h1>MEMBER JOIN</h1>
-	<form id="joinfrm" name="joinfrm" action="${pageContext.request.contextPath}/member/save" method="post" onsubmit="return false">
+	<form:form modelAttribute="memberDto" id="joinfrm" name="joinfrm" action="${pageContext.request.contextPath}/member/save" method="post" onsubmit="return false">
+	
+		<div style="font-size:0.5rem;color:red;text-align:left;margin-bottom:0px;"><form:errors path="email" /></div>
 		<input type="text" name="email" placeholder="example@example.com" class="form-control" />
+		<div style="font-size:0.5rem;color:red;text-align:left;margin-bottom:0px;"><form:errors path="pwd" /></div>
 		<input type="password" name="pwd"  placeholder="Insert Password" class="form-control" />
 		<input type="text" name="birth"  placeholder="Insert BirthDay" class="form-control" />
 		<div class="row" style="margin-bottom:0px;" id="SMSAuth">
@@ -53,8 +58,8 @@
 		<input type="text" name="addr2"  placeholder="상세주소 입력" class="form-control" />
 		<button class="btn btn-secondary" onclick="isValid()">회원가입</button>
 		<input type="reset" value="초기화" class="btn btn-danger" />
-		<a href="${pageContext.request.contextPath}/auth/login.do" class="btn btn-warning">이전으로</a>
-	</form>
+		<a href="${pageContext.request.contextPath}/login" class="btn btn-warning">이전으로</a>
+	</form:form>
 </section>
 
 
@@ -63,7 +68,7 @@
 		const joinfrm = document.joinfrm;
 		alert("[JS] func isValid");
 		//email 공백여부 등 Validation Check
-		
+		joinfrm.action="${pageContext.request.contextPath}/member/save";
 		joinfrm.submit();
 	}
 </script>
