@@ -21,10 +21,10 @@
 	 
 		<div style="font-size:0.5rem;color:red;text-align:left;margin-bottom:0px;"><form:errors path="email" /></div>
 		<input type="text" name="email" placeholder="example@example.com"  value="${cookie.email.value}" class="form-control" />
+		<div style="font-size:0.5rem;color:red;text-align:left;margin-bottom:0px;"><form:errors path="pwd" /></div>
 		<input type="password" name="pwd"  placeholder="Insert Password"  class="form-control" />
-		<div style="text-align:left;">
+		<div style="text-align:left;margin:0px;">
 			<input type="checkbox" name="rememberId"  class="form-check-input" id="chk" /> <label for="chk">Remember ID</label>
-		
 		</div>
 		<button class="btn btn-primary w-100">로그인</button>
 		<a class="w-100 btn btn-secondary" href="javascript:kakaoLogin()">카카오로그인</a>

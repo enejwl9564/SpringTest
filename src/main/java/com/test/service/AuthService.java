@@ -3,8 +3,8 @@ package com.test.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.test.dao.MemberDao;
@@ -20,6 +20,7 @@ public class AuthService {
 	
 	public static String code;
 	BCrypt bc = new BCrypt();
+ 
 	
 	@Autowired
 	MemberDao dao;

@@ -15,40 +15,35 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import lombok.extern.log4j.Log4j;
 
-
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class DatasourceTests {
+public class DataSourceTests {
 
 	@Autowired
 	DataSource ds;
 	
 	@Test
 	public void Conn() {
-		log.info("conn : "+ds);
+		log.info("conn : " + ds);
 	}
-	
 	@Test
 	public void insert() throws SQLException {
 		Connection conn = ds.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("insert into tbl_test values(1,'홍길동')");
 		int result = pstmt.executeUpdate();
-		log.info("result : "+result);
+		log.info("result : " + result);
 	}
-	
 	@Test
 	public void select() throws SQLException {
 		Connection conn = ds.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("select * from tbl_test");
 		ResultSet rs = pstmt.executeQuery();
-		if(rs != null) {
+		if(rs!=null) {
 			while(rs.next()) {
-				log.info(rs.getInt(1));
-				log.info(rs.getString(2));
+				log.info("id : " + rs.getInt(1));
+				log.info("name : " + rs.getString(2));
 			}
 		}
 	}
-
 }

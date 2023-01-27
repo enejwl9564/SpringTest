@@ -53,8 +53,8 @@ public class forwardloginfilter implements Filter{
 				chain.doFilter(req, resp);
 				return ;
 			}
-			String msg="<i class='bi bi-exclamation-triangle' style='color:orange;font-size:1rem'></i> 로그인이 필요한 페이지 입니다.";
-			req.getRequestDispatcher("/login?msg="+msg).forward(request, response);
+		
+			req.getRequestDispatcher("/login").forward(request, response);
 			return ;
 		}
 		else //로그인 한상태

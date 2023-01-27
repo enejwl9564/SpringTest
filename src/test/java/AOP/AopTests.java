@@ -11,8 +11,6 @@ import com.test.aop.MyMath;
 
 import lombok.extern.log4j.Log4j;
 
-
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
@@ -23,10 +21,10 @@ public class AopTests {
 	
 	@Test
 	public void aopTests() {
-		log.info("AC : "+ac);
-		MyMath math = (MyMath)ac.getBean("myMath");
-		math.add(10, 20);
-		math.add(30, 40, 50);
+		log.info("AC : " + ac);
+		MyMath math =(MyMath)ac.getBean("myMath");
+		math.add(10,20);
+		math.add(30,40,50);
 	}
 	
 }
