@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.test.dao.MemberDao;
@@ -11,7 +12,6 @@ import com.test.dto.AuthDto;
 import com.test.dto.LoginDto;
 import com.test.dto.MemberDto;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import lombok.extern.log4j.Log4j;
 
 @Service
