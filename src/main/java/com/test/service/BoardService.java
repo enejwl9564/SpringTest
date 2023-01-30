@@ -1,31 +1,19 @@
 package com.test.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.net.URLEncoder;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.dao.BoardDao;
-import com.test.dto.AuthDto;
 import com.test.dto.BoardDto;
 import com.test.dto.Criteria;
 import com.test.dto.PageDto;
-import com.test.dto.ReplyDto;
 
 import lombok.extern.log4j.Log4j;
 

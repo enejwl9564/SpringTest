@@ -1,5 +1,8 @@
 package com.test.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,27 +20,42 @@ public class TestServiceImpl implements TestService {
 	TestDao dao;
 
 	@Override
-	public void func1() throws Exception{
-		dao.insert(new TestDto(6,"ff"));
-		dao.insert(new TestDto(6,"ff"));
+	@Transactional(rollbackFor=Exception.class)
+	public TestDto GetTestObject(int id) {
+		return dao.select(id);
 	}
 	
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public void func2() throws Exception{
-		dao.insert(new TestDto(6,"ff"));
-		dao.insert(new TestDto(6,"ff"));
+	public TestDto InsertTestObject(TestDto dto) {
+		return dao.insert(dto);
 	}
+
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public int UpdateTestObject(TestDto dto) {
+		return dao.update(dto);
+	}
+
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public int DeleteTestObject(int id) {
+		return dao.delete(id);
+	}	
 	
 	@Override
-	@Transactional	//RuntimeException발생시에만 적용...
-	public void func3() throws Exception{
-		dao.insert(new TestDto(6,"ff"));
-		throw new RuntimeException();
-		//dao.insert(new TestDto(6,"ff"));
+	@Transactional(rollbackFor=Exception.class)
+	public List<Map<String,Object>> SelectAllTestObject() {
+		return dao.SelectAll();
+	}	
+	
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public List<Map<String,Object>> SelectAllTestObject(Map<String,Object> map) {
+		return dao.SelectAll(map);
 	}
 	
-}
+}	
 
 
 

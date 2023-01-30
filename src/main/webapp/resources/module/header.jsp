@@ -14,7 +14,7 @@
 			<ul>
 				<li><a href="javascript:void(0)">회사소개</a></li>
 				<li><a href="${pageContext.request.contextPath}/notice/list.do">공지사항</a></li>
-				<li><a href="${pageContext.request.contextPath}/board/list.do">자유게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/list">자유게시판</a></li>
 				<li><a href="javascript:void(0)">ETC</a></li>
 
 			</ul>
