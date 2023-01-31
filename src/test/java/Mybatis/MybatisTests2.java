@@ -60,6 +60,17 @@ public class MybatisTests2 {
 		
 	}
 	
+	@Test
+	public void func6() {
+		Map<String,Object> m = new HashMap();
+		m.put("condition", "true");
+		m.put("type", "addr");	//type:name
+		m.put("keyword", "광역");  //keyword:b
+		List<Map<String,Object>> list = service.SelectAllTestObject(m);
+		log.info("Total : " + list.size());
+		list.forEach(map->{log.info(map.get("id") +","+ map.get("name") +","+map.get("addr"));});
+	}
+	
 	
 }
 

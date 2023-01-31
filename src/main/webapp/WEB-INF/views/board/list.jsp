@@ -26,7 +26,7 @@
 		<div class="msg">${msg}</div>
 		<!-- 페이지경로표시 -->
 		<div>
-			<a href="${pageContext.request.contextPath}/main.do"> <i
+			<a href="${pageContext.request.contextPath}/main"> <i
 				class="bi bi-house-door"></i>
 			</a> > BOARD
 		</div>
@@ -48,7 +48,7 @@
 			<c:forEach var="dto" items="${list}" varStatus="status" >
 			 	<tr>
 					<td>${dto.no}</td>
-					<td><a href="${pageContext.request.contextPath}/board/read.do?bno=${dto.no}&pageno=${pagedto.criteria.pageno}">${dto.title}</a> </td>
+					<td><a href="${pageContext.request.contextPath}/board/read?bno=${dto.no}&pageno=${pagedto.criteria.pageno}">${dto.title}</a> </td>
 					<td>${dto.email }</td>
 					<td>${dto.regdate }</td>
 					<td>${dto.count }</td>
@@ -67,7 +67,7 @@
 						  <!-- PREV 버튼 -->
 						  <c:if test="${pagedto.prev}">
 							 	 <li class="page-item">
-							      <a class="page-link" href="${pageContext.request.contextPath}/board/list.do?pageno=${pagedto.nowBlock * pagedto.pagePerBlock - pagedto.pagePerBlock*2 + 1}" aria-label="Previous">
+							      <a class="page-link" href="${pageContext.request.contextPath}/board/list?pageno=${pagedto.nowBlock * pagedto.pagePerBlock - pagedto.pagePerBlock*2 + 1}" aria-label="Previous">
 							        <span aria-hidden="true">&laquo;</span>
 							      </a>
 							    </li> 
@@ -76,7 +76,7 @@
 						    
 						    <!-- 페이지번호 -->
 						    <c:forEach begin="${pagedto.startPage}" end="${pagedto.endPage }" var="pageno" step="1">
-							    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/list.do?pageno=${pageno}">${pageno}</a></li>
+							    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/list?pageno=${pageno}">${pageno}</a></li>
 						    </c:forEach>
 						    
 						
@@ -85,7 +85,7 @@
 						    <!-- NEXT버튼 -->
 						    <c:if test="${pagedto.next}">
 							    <li class="page-item">
-							      <a class="page-link" href="${pageContext.request.contextPath}/board/list.do?pageno=${pagedto.nowBlock*pagedto.pagePerBlock+1}" aria-label="Next">
+							      <a class="page-link" href="${pageContext.request.contextPath}/board/list?pageno=${pagedto.nowBlock*pagedto.pagePerBlock+1}" aria-label="Next">
 							        <span aria-hidden="true">&raquo;</span>
 							      </a>
 							    </li>
@@ -96,8 +96,8 @@
 					</td>
 					<!-- 글쓰기/처음으로 -->
 					<td colspan="2" style="text-align:right;">
-						<a href="${pageContext.request.contextPath}/board/post.do" class="btn btn-danger">글쓰기</a>
-						<a href="${pageContext.request.contextPath}/board/list.do" class="btn btn-success">처음으로</a>
+						<a href="${pageContext.request.contextPath}/board/post" class="btn btn-danger">글쓰기</a>
+						<a href="${pageContext.request.contextPath}/board/list" class="btn btn-success">처음으로</a>
 					</td>
 					 
 				</tr>
@@ -123,7 +123,7 @@
 					url : '/v1/user/unlink',
 					success : function(response) {
 						console.log("RESPONSE : " + response)
-						location.href = path+"/auth/logout.do"
+						location.href = path+"/auth/logout"
 					},
 					fail : function(error) {
 						console.log(error)

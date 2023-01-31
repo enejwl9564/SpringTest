@@ -67,5 +67,7 @@ public interface TestMapper {
 	
 	List<Map<String,Object>> selectXMLHashMapIf(Map<String,Object> map);
 	
+	List<Map<String,Object>> selectXMLHashMapChoose(Map<String,Object> map);
+	
 	
 }

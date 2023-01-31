@@ -84,22 +84,21 @@ public class MybatisTests {
 	
 	@Test
 	public void func8() {
-		Map<String,Object> map = new HashMap();
-		map.put("id",200);
-		map.put("name","Test!!");
+		Map<String,Object> map = new HashMap();	
+		map.put("id", 200);
+		map.put("name", "Test!!");
 		mapper.insertXMLHashmap(map);		
 	}
-	
 	@Test
 	public void func9() {
 		List<TestDto> list = new ArrayList();
-		list.add(new TestDto(300,"a"));
-		list.add(new TestDto(301,"b"));
-		list.add(new TestDto(302,"c"));
-		list.add(new TestDto(303,"d"));
-		list.add(new TestDto(304,"e"));
+		list.add(new TestDto(400,"aaa"));
+		list.add(new TestDto(401,"bbb"));
+		list.add(new TestDto(402,"ccc"));
+		list.add(new TestDto(403,"ddd"));
+		list.add(new TestDto(404,"eee"));
 		
-		Map<String, Object> map = new HashMap();
+		Map<String,Object> map = new HashMap();	
 		map.put("list",list);
 		
 		mapper.insertXMLHashmap2(map);
@@ -107,9 +106,10 @@ public class MybatisTests {
 	
 	@Test
 	public void func10() {
-		List<Map<String, Object>> list = mapper.selectXMLHashMap();
+		
+		List<Map<String,Object>> list = mapper.selectXMLHashMap();
 		log.info("Total : " +list.size());
-		list.forEach(map->{log.info(map.get("id")+","+map.get("name") ); });
+		list.forEach(map->{log.info(map.get("id") +","+map.get("name")   ); });
 	}
 }
 

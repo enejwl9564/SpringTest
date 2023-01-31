@@ -22,6 +22,11 @@ public class GlobalCatcher {
 		model.addAttribute("ex",ex);
 		return "error";
 	}
-	
+	@ExceptionHandler(Exception.class)
+	public String AllException(Exception ex,Model model) {
+		log.info("global Arithmetic Ex..");
+		model.addAttribute("ex",ex);
+		return "error";
+	}	
 
 }

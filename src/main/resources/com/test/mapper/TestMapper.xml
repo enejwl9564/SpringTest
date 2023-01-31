@@ -84,6 +84,20 @@
 		</if>
 	</select>
 	
+	<select id="selectXMLHashMapChoose" resultType="hashmap" parameterType="hashmap">
+		select * from tbl_a
+		<if test="condition!=null">
+			where
+			<choose>
+				<when test="type.equals('name')">
+					name like concat('%',#{keyword},'%')
+				</when>
+				<when test="type.equals('addr')">
+					addr like concat('%',#{keyword},'%')
+				</when>
+			</choose>
+		</if>
+	</select>	
 	
 </mapper>
 

@@ -4,73 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.test.mapper.TestMapper">
+<mapper namespace="com.test.mapper.BoardMapper">
 
-	<!-- SELECT -->
-	<select id="countXML" resultType="int">
-		Select count(*) from tbl_a
-	</select>
 
-	<!-- SELECT -->
-	<select id="selectXML" resultType="com.test.dto.TestDto" parameterType="int">
-		Select * from tbl_a where id=#{id}
-	</select>
-	
-	<!-- SELECT -->
-	<select id="selectXML2" resultType="com.test.dto.TestDto" parameterType="int">
-		<![CDATA[
-			Select * from tbl_a where id>=#{id}
-		]]>
-	</select>	
-	
-	<insert id="insertXML">
-		Insert into tbl_a values(#{id},#{name})
-	</insert>
-	
-	<insert id="insertPARAM">
-		Insert into tbl_a values(#{id},#{name})
-	</insert>
-	
-	<insert id="insertKeyBeforeXML" parameterType="com.test.dto.TestDto">
-		<selectKey	order="BEFORE" keyProperty="id" resultType="int">
-			select max(id) from tbl_a
-		</selectKey>
-		Insert into tbl_a values(null,#{name})
-	</insert>
-	
-	<insert id="insertKeyAfterXML" parameterType="com.test.dto.TestDto">
-		<selectKey	order="AFTER" keyProperty="id" resultType="int">
-			select max(id) from tbl_a
-		</selectKey>
-		Insert into tbl_a values(null,#{name})
-	</insert>	
-	
-	
-	
-	<update id="updateXML" parameterType="com.test.dto.TestDto">
-		Update tbl_a SET name=#{name} where id=#{id}
-	</update>
-	
-	<delete id="deleteXML" parameterType="int">
-		Delete from tbl_a where id=#{id}
-	</delete>
-	
-	<insert id="insertXMLHashmap" parameterType="hashmap">
-		Insert into tbl_a values(#{id},#{name})
-	</insert>
-
-	<insert id="insertXMLHashmap2" parameterType="hashmap">
-		Insert into tbl_a 
-		values
-		<foreach collection="list" item="item" separator=",">
-			(${item.id},#{item.name})
-		</foreach>
-	</insert>
-	
-	<select id="selectXMLHashMap" resultType="hashmap">
-		select * from tbl_a
-	</select>
-	
-	
 	
 </mapper>
+
+
