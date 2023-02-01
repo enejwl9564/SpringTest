@@ -34,6 +34,7 @@
 	<context:component-scan base-package="com.test.service" />
 	<context:component-scan base-package="com.test.interceptor" />
 	<context:component-scan base-package="com.test.task" />
+	<context:component-scan base-package="com.test.restcontroller" />
 	
 	
 	<!-- Validator -->
@@ -60,5 +61,11 @@
 
 	<!-- Scheduled -->
 	<task:annotation-driven/>
+	
+	
+	<!-- Multipart Resolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	
+	
 	
 </beans:beans>

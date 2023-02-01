@@ -59,3 +59,14 @@ Mapper XML <br/>
 Mybati Query Annotation<br/>
 ServiceImpl - DaoImpl - Mapper Setting<br/>
 Dynamic Query -KeyField/Keyword Search(if,Choose,foreach)<br/>
+
+## 14 Interceptor <br/>
+-<br/>
+
+## 15 Scheduler <br/>
+-<br/>
+
+## 16 RestController <br/>
+-<br/>
+
+
